@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 // const restaurantsList = require('./restaurants.json')
 const Restaurant = require('./models/restaurant')
 const port = 3000
@@ -19,11 +20,11 @@ db.once('open', () => {
 })
 
 
-app.engine('handlebars', exphbs({ defaultlayout: 'main' }))
-app.set('view engine', 'handlebars')
+app.engine('hbs', exphbs({ defaultlayout: 'main' }))
+app.set('view engine', 'hbs')
 
 app.use(express.static('public'))
-
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // homepage: restaurants list
 app.get('/', (req, res) => {
@@ -56,6 +57,25 @@ app.get('/search', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/restaurant/add', (req, res) => {
+  2
+  return res.render('add')
+})
+
+app.post('/restaurants', (req, res) => {
+  return Restaurant.create(req.body)
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+
+})
+
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
 
 app.listen(port, () => {
   console.log('server is running')
