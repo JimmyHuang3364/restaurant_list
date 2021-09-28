@@ -3,7 +3,8 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
-const restaurantsList = require('./restaurants.json')
+// const restaurantsList = require('./restaurants.json')
+const Restaurant = require('./models/restaurant')
 const port = 3000
 
 mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true })  //連線資料庫
@@ -24,23 +25,35 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 
-// restaurants list
+// homepage: restaurants list
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantsList.results })
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
 })
 
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantsList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant: restaurant })
+// show: restaurant detail
+app.get('/restaurants/:id/detail', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('show', { restaurant }))
+    .catch(error => console.log(error))
 })
 
+// search: restaurants list
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaurants = restaurantsList.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase())
-  })
-
-  res.render('index', { restaurants: restaurants, keyword: keyword })
+  Restaurant.find()
+    .lean()
+    .then(allRestaurants => {
+      const restaurants = allRestaurants.filter(restaurant => {
+        return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase())
+      })
+      res.render('index', { restaurants })
+    })
+    .catch(error => console.log(error))
 })
 
 
