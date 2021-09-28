@@ -15,7 +15,7 @@ const restaurantSchema = new Schema({
   },
   image: {
     type: String,
-    require: false
+    require: true
   },
   location: {
     type: String,
@@ -27,11 +27,11 @@ const restaurantSchema = new Schema({
   },
   google_map: {
     type: String,
-    require: false
+    require: true
   },
   rating: {
-    type: String,
-    require: false
+    type: Number,
+    require: true
   },
   description: {
     type: String,
