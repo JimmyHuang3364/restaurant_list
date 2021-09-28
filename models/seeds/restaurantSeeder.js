@@ -25,4 +25,5 @@ db.once('open', () => {
     })
   })
   console.log('種子資料載入完成!!')
+  console.log('按 Ctrl + C 退出')
 })
