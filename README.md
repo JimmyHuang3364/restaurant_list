@@ -18,6 +18,9 @@
 ## 需求
 - express 4.17.1
 - express-handlebars 5.3.3
+- body-parser": 1.19.0
+- bootstrap-icons": 1.5.0
+- mongoose: 6.0.8
 
 ## 安裝
 - 下載
