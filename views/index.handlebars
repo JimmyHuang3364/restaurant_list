@@ -23,8 +23,8 @@
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
         {{#each restaurants}}
-        <a href="/restaurants/{{this.id}}" class="text-secondary">
-          <div class="card mb-3">
+        <div>
+          <div class="card mb-0">
             <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
             <div class="card-body p-3">
               <h6 class="card-title mb-1">{{this.name}}</h6>
@@ -40,7 +40,16 @@
 
             </div>
           </div>
-        </a>
+
+          <div class="d-flex flex-row-reverse bd-highlight mt-1 mb-3">
+            <div>
+              <a href="">Edit</a>
+              <a href="/restaurants/{{this.id}}" class="ml-1">Detail</a>
+              <button type="button" class="btn btn-outline-danger btn-sm ml-1">Delete</button>
+            </div>
+          </div>
+        </div>
+
         {{/each}}
       </div>
     </div>
