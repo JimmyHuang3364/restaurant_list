@@ -4,7 +4,6 @@ const app = express()
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-// const restaurantsList = require('./restaurants.json')
 const Restaurant = require('./models/restaurant')
 const port = 3000
 
