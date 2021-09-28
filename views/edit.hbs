@@ -1,6 +1,6 @@
 <h1 class="mb-1 restaurant-show-title">加入新的餐廳</h1>
 <div class="container">
-  <form action="/restaurants" method="POST">
+  <form action="/restaurants/{{restaurant._id}}/edit" method="POST">
     <div class="form-group">
       <label for="formGroupExampleInput2">名稱</label>
       <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="請輸入店名" value="{{restaurant.name}}" name="name">
@@ -38,6 +38,6 @@
       <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="請簡短輸入" value="{{restaurant.description}}" name="description">
     </div>
 
-    <button class="btn btn-major" type="submit" id="add-button">修改</button>
+    <button class="btn btn-major" type="submit" id="add-button">確定修改</button>
   </form>
 </div>

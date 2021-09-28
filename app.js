@@ -57,6 +57,7 @@ app.get('/search', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//about ceate new restaurant
 app.get('/restaurant/add', (req, res) => {
   2
   return res.render('add')
@@ -69,11 +70,19 @@ app.post('/restaurants', (req, res) => {
 
 })
 
+// about restaurant edit
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findByIdAndUpdate(id, req.body)
+    .then(() => res.redirect(`/restaurants/${id}/detail`))
     .catch(error => console.log(error))
 })
 
