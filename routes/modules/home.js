@@ -23,7 +23,7 @@ router.put('/sort', (req, res) => {
   const sortItem = sortItems[req.body.sort]
   const sortName = sortItem[1]
 
-  console.log(sortItem)
+  // console.log(sortItem)
   Restaurant.find()
     .lean()
     .sort(sortItem[0])
