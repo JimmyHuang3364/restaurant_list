@@ -28,7 +28,6 @@ router.get('/search', (req, res) => {
 
 //about ceate new restaurant
 router.get('/add', (req, res) => {
-  2
   return res.render('add')
 })
 
@@ -62,5 +61,6 @@ router.delete('/:id', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
+
 
 module.exports = router

@@ -18,9 +18,24 @@
 </div>
 
 
-
 <!-- restaurant list -->
 <div class="container mt-5">
+
+  <div class="d-flex justify-content-end mb-2 mx-auto" style="width: 900px;">
+
+    <form class="mr-3" action="/sort?_method=PUT" method="post">
+      <select onchange="submit()" name="sort">
+        <option value="" name="">Sort</option>
+        <option value="default" name="default">預設</option>
+        <option value="nameAsc" name="name_asc">A -> Z</option>
+        <option value="nameDesc" name="name_desc">Z -> A</option>
+        <option value="category" name="category">類別</option>
+        <option value="location" name="location">地區</option>
+      </select>
+    </form>
+    <p>排序 : {{sortName}}</p>
+  </div>
+
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
