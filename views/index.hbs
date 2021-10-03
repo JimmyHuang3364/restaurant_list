@@ -2,7 +2,7 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="restaurants/search">
+      <form action="/restaurants/search">
         <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button">
@@ -23,8 +23,8 @@
 
   <div class="d-flex justify-content-end mb-2 mx-auto" style="width: 900px;">
 
-    <form class="mr-3" action="/sort?_method=PUT" method="post">
-      <select onchange="submit()" name="sort">
+    <form class="mr-3" action="/restaurants/sort" method="get">
+      <select onchange="submit()" name="sortCondition">
         <option value="" name="">Sort</option>
         <option value="default" name="default">預設</option>
         <option value="nameAsc" name="name_asc">A -> Z</option>
@@ -33,7 +33,7 @@
         <option value="location" name="location">地區</option>
       </select>
     </form>
-    <p>排序 : {{sortName}}</p>
+    <p>排序方式 : {{sortName}}</p>
   </div>
 
   <div class="row">
