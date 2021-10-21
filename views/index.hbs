@@ -20,20 +20,24 @@
 
 <!-- restaurant list -->
 <div class="container mt-5">
+  <div class="d-flex justify-content-between mb-2 mx-auto" style="width: 900px;">
+    <div>
+      <a href="/restaurants/add" class="btn btn-major mb-2">+新增餐廳</a>
+    </div>
 
-  <div class="d-flex justify-content-end mb-2 mx-auto" style="width: 900px;">
-
-    <form class="mr-3" action="/restaurants/sort" method="get">
-      <select onchange="submit()" name="sortCondition">
-        <option value="" name="">Sort</option>
-        <option value="default" name="default">預設</option>
-        <option value="nameAsc" name="name_asc">A -> Z</option>
-        <option value="nameDesc" name="name_desc">Z -> A</option>
-        <option value="category" name="category">類別</option>
-        <option value="location" name="location">地區</option>
-      </select>
-    </form>
-    <p>排序方式 : {{sortName}}</p>
+    <div class="d-flex justify-content-end mt-2">
+      <form class="mr-3" action="/restaurants/sort" method="get">
+        <select onchange="submit()" name="sortCondition">
+          <option value="" name="">Sort</option>
+          <option value="default" name="default">預設</option>
+          <option value="nameAsc" name="name_asc">A -> Z</option>
+          <option value="nameDesc" name="name_desc">Z -> A</option>
+          <option value="category" name="category">類別</option>
+          <option value="location" name="location">地區</option>
+        </select>
+      </form>
+      <p>排序方式 : {{sortName}}</p>
+    </div>
   </div>
 
   <div class="row">
