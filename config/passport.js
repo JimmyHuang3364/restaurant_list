@@ -22,6 +22,9 @@ module.exports = app => {
   }))
   //序列化&反序列化
   passport.serializeUser((user, done) => {
+    done(null, user.id)
+  })
+  passport.deserializeUser((id, done) => {
     User.findById(id)
       .lean()
       .then(user => done(null, user))

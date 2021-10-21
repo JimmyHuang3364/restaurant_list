@@ -1,7 +1,7 @@
 // 載入 express 並建構應用程式伺服器
 const express = require('express')
 const session = require('express-session')
-const userPassport = require('./config/passport')
+const usePassport = require('./config/passport')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
@@ -25,7 +25,14 @@ app.use(session({
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
-userPassport(app)
+usePassport(app)
+
+// app.use((req, res, next) => {
+//   res.locals.isAuthemticaed = req.isAuthenticated()
+//   res.locals.user = req.user
+//   next()
+// })
+
 app.use(routes)
 
 
