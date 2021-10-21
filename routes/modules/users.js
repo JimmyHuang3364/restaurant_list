@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('passport')
+const bcrypt = require('bcryptjs')
 
 const User = require('../../models/user')
 
@@ -40,7 +41,7 @@ router.post('/register', (req, res) => {
   //檢查email是否重複
   User.findOne({ email })
     .then(user => {
-      //重複，回註冊頁，並恢復所填之資訊
+      //重複，回註冊頁，並恢復所填之資訊，並出現異常訊息
       if (user) {
         errors.push({ message: '此email已使用' })
         return res.render('register', {
@@ -50,15 +51,19 @@ router.post('/register', (req, res) => {
           password,
           confirmPassword
         })
-      } else { //不重複，執行新增至資料庫流程
-        return User.create({
+      }
+      //不重複，執行新增至資料庫流程
+      return bcrypt
+        .genSalt(10) //產鹽
+        .then(salt => bcrypt.hash(password, salt)) //加鹽，並雜湊
+        .then(hash => User.create({
           name,
           email,
-          password
-        })
-          .then(() => res.redirect('/'))
-          .catch(err => console.log(err))
-      }
+          password: hash
+        }))
+        .then(() => res.redirect('/'))
+        .catch(err => console.log(err))
+
     })
 
 })
