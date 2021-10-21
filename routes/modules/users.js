@@ -20,14 +20,31 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body  //拿到表單送出的資料
+  const errors = []
   //以下註冊流程
+  if (!email || !password || !confirmPassword) {
+    errors.push({ message: '有*必填欄位未填寫' })
+  }
+  if (password !== confirmPassword) {
+    errors.push({ message: '密碼與確認密碼不相符!!' })
+  }
+  if (errors.length) {
+    return res.render('register', {
+      errors,
+      name,
+      email,
+      password,
+      confirmPassword
+    })
+  }
   //檢查email是否重複
   User.findOne({ email })
     .then(user => {
       //重複，回註冊頁，並恢復所填之資訊
       if (user) {
-        console.log('此email已使用')
-        res.render('register', {
+        errors.push({ message: '此email已使用' })
+        return res.render('register', {
+          errors,
           name,
           email,
           password,
@@ -48,6 +65,7 @@ router.post('/register', (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.logout()
+  req.flash('success_msg', '你已經成功登出。')
   res.redirect('/users/login')
 })
 
