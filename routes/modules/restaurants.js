@@ -32,10 +32,10 @@ router.get('/add', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  req.body.userId = req.user._id
   return Restaurant.create(req.body)
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
-
 })
 
 // about restaurant edit
