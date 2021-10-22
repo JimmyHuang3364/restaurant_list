@@ -1,0 +1,26 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "name": "",
+      "email": "user1@example.com",
+      "password": "12345678",
+      "favoriteReataurantID": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 2,
+      "name": "",
+      "email": "user2@example.com",
+      "password": "12345678",
+      "favoriteReataurantID": [
+        4,
+        5,
+        6
+      ]
+    }
+  ]
+}
