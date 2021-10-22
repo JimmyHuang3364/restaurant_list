@@ -9,17 +9,15 @@ module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
   // 設定本地登入策略
-  passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+  passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
     User.findOne({ email })
       .then(user => {
         if (!user) {
-          console.log('asd')
-          return done(null, false, { message: '用戶不存在!!' })
+          return done(null, false, req.flash('loginErr_msg', '該用戶不存在'))
         }
         return bcrypt.compare(password, user.password).then(isMatch => {
           if (!isMatch) {
-            console.log('aaa')
-            return done(null, false, { message: '密碼錯誤!!' })
+            return done(null, false, req.flash('loginErr_msg', '密碼錯誤'))
           }
           return done(null, user)
         })
