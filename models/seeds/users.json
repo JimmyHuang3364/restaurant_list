@@ -1,7 +1,7 @@
 {
   "results": [
     {
-      "name": "",
+      "name": "User1",
       "email": "user1@example.com",
       "password": "12345678",
       "favoriteReataurantIdex": [
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "name": "",
+      "name": "User2",
       "email": "user2@example.com",
       "password": "12345678",
       "favoriteReataurantIdex": [
