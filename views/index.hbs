@@ -64,7 +64,7 @@
               <div class="d-flex justify-content-end bd-highlight mr-1 mb-1">
                 <a href="/restaurants/{{this._id}}/edit">Edit</a>
                 <a href="/restaurants/{{this._id}}/detail" class="ml-1">Detail</a>
-                <form action="/restaurants/{{this._id}}?_method=DELETE" method="post">
+                <form action="/restaurants/{{this._id}}?_method=DELETE" method="post" onSubmit="javascript:return window.confirm('確認提交嗎?')">
                   <button class="btn btn-outline-danger btn-sm ml-1" type="submit">Delete</button>
                 </form>
               </div>
