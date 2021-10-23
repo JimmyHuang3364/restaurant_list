@@ -7,7 +7,7 @@
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">name_en</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="英文名稱" name="name_en">
+      <input type="text" class="form-control" style="im" id="formGroupExampleInput2" placeholder="英文名稱" name="name_en" pattern="[a-z0-9]*" required>
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">類別</label>
@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">image連結</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="https://assets-lighthouse.s3...." name="image">
+      <input type="url" class="form-control" id="formGroupExampleInput2" placeholder="https://assets-lighthouse.s3...." name="image"> required
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">地址</label>
@@ -23,11 +23,11 @@
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">電話</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="ex : 02 1234 5678" name="phone" required>
+      <input type="tel" class="form-control" id="formGroupExampleInput2" placeholder="ex : 02 1234 5678" name="phone" required>
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">google_map</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="https://goo.gl/maps/..." name="google_map">
+      <input type="url" class="form-control" id="formGroupExampleInput2" placeholder="https://goo.gl/maps/..." name="google_map" required>
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">評分</label>
@@ -35,7 +35,7 @@
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">介紹</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="請簡短輸入" name="description">
+      <input type="text" class="form-control" style="ime-mode: disabled;" id="formGroupExampleInput2" placeholder="請簡短輸入" name="description" required>
     </div>
 
     <button class="btn btn-major" type="submit" id="add-button">新增</button>
