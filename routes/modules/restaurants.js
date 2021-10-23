@@ -66,22 +66,29 @@ router.delete('/:id', (req, res) => {
 router.get('/sort', (req, res) => {
   const sortCondition = req.query.sortCondition
   const userId = req.user._id
-  // console.log(sortCondition)
-
   const sortItems = {
-    default: [{ _id: 'asc' }, ""],
-    nameAsc: [{ name: 'asc' }, "A -> Z"],
-    nameDesc: [{ name: 'desc' }, "Z -> A"],
-    category: [{ category: 'asc' }, "category"],
-    location: [{ location: 'asc' }, "location"],
+    nameAsc: {
+      order: { _id: 'asc' },
+      title: 'A -> Z'
+    },
+    nameDesc: {
+      order: { name: 'desc' },
+      title: 'Z -> A'
+    },
+    category: {
+      order: { category: 'asc' },
+      title: 'category'
+    },
+    location: {
+      order: { location: 'asc' },
+      title: 'location'
+    },
   }
-
-  // console.log(sortItems[sortCondition])
-  const sortName = sortItems[sortCondition][1]
+  const sortName = sortItems[sortCondition].title
 
   Restaurant.find({ userId })
     .lean()
-    .sort(sortItems[sortCondition][0])
+    .sort(sortItems[sortCondition].order)
     .then(restaurants => res.render('index', { restaurants, sortName }))
     .catch(error => console.log(error))
 })
