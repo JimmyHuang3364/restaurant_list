@@ -65,6 +65,7 @@ router.delete('/:id', (req, res) => {
 // about restaurant sort
 router.get('/sort', (req, res) => {
   const sortCondition = req.query.sortCondition
+  const userId = req.user._id
   // console.log(sortCondition)
 
   const sortItems = {
@@ -78,7 +79,7 @@ router.get('/sort', (req, res) => {
   // console.log(sortItems[sortCondition])
   const sortName = sortItems[sortCondition][1]
 
-  Restaurant.find()
+  Restaurant.find({ userId })
     .lean()
     .sort(sortItems[sortCondition][0])
     .then(restaurants => res.render('index', { restaurants, sortName }))
